@@ -9,5 +9,7 @@ fi
 if [ "${SCHEDULE}" = "**None**" ]; then
   sh backup.sh
 else
-  exec go-cron "$SCHEDULE" /bin/sh backup.sh
+  echo "${SCHEDULE} /bin/sh /backup.sh >> /var/log/cron.log 2>&1" > /etc/crontabs/root
 fi
+
+/usr/sbin/crond -f -d 8
