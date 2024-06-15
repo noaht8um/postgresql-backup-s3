@@ -10,6 +10,5 @@ if [ "${SCHEDULE}" = "**None**" ]; then
   sh backup.sh
 else
   echo "${SCHEDULE} /bin/sh /backup.sh >> /var/log/cron.log 2>&1" > /etc/crontabs/root
+  /usr/sbin/crond -f -d 8
 fi
-
-/usr/sbin/crond -f -d 8
